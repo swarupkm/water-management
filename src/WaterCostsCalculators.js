@@ -27,32 +27,40 @@ export class BorewellWaterCalculator extends WaterCostsCalculator {
   }
 }
 
+class Slab {
+  constructor({ minLiters, maxLiters, cost }) {
+    this.minLiters = minLiters;
+    this.maxLiters = maxLiters || Number.MAX_SAFE_INTEGER;
+    this.slabCost = cost;
+  }
+  calculate(waterInLiters) {
+    let cost = 0;
+    if (waterInLiters < this.minLiters) {
+      return cost;
+    }
+    if (waterInLiters >= this.minLiters && waterInLiters <= this.maxLiters) {
+      cost += this.slabCost * (Math.min(waterInLiters, this.maxLiters) - this.minLiters + 1);
+      return cost;
+    }
+    if (waterInLiters > this.maxLiters) {
+      cost += this.slabCost * (this.maxLiters - this.minLiters + 1);
+      return cost;
+    }
+  }
+}
+
 export class TankerWaterCalculator extends WaterCostsCalculator {
   SLABS = [
-    { minLiters: 1, maxLiters: 500, cost: 2 },
-    { minLiters: 501, maxLiters: 1500, cost: 3 },
-    { minLiters: 1501, maxLiters: 3000, cost: 5 },
-    { minLiters: 3001, maxLiters: null, cost: 8},
+    new Slab({ minLiters: 1, maxLiters: 500, cost: 2 }),
+    new Slab({ minLiters: 501, maxLiters: 1500, cost: 3 }),
+    new Slab({ minLiters: 1501, maxLiters: 3000, cost: 5 }),
+    new Slab({ minLiters: 3001, maxLiters: null, cost: 8}),
   ]
   calculatorFor(waterInLiters) {
     validateWaterUnits(waterInLiters)
     let cost = 0;
     for (let slab of this.SLABS) {
-      if (waterInLiters < slab.minLiters) {
-        continue;
-      }
-      if (!slab.maxLiters) {
-        cost += slab.cost * (waterInLiters - slab.minLiters + 1);
-        continue;
-      }
-      if (waterInLiters > slab.maxLiters) {
-        cost += slab.cost * (slab.maxLiters - slab.minLiters + 1);
-        continue;
-      }
-      if (waterInLiters >= slab.minLiters && waterInLiters <= slab.maxLiters) {
-        cost += slab.cost * (Math.min(waterInLiters, slab.maxLiters) - slab.minLiters + 1);
-        continue;
-      }
+      cost += slab.calculate(waterInLiters);
     }
     return cost;
   }
