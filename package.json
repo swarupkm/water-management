@@ -1,0 +1,19 @@
+{
+  "name": "water-management",
+  "version": "1.0.0",
+  "description": "",
+  "main": "geektrust.js",
+  "scripts": {
+    "test": "npx jest",
+    "start": "node geektrust.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/cli": "^7.17.6",
+    "@babel/core": "^7.17.8",
+    "@babel/preset-env": "^7.16.11",
+    "@babel/register": "^7.17.7",
+    "jest": "^27.5.1"
+  }
+}
