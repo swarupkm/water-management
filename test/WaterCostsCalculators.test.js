@@ -19,9 +19,6 @@ describe('Water Costs Calculator', () => {
 
 describe('CorporationWaterCostsCalculator', () => {
   describe('calculateFor', () => {
-    it('should throw error if water is not integer', () => {
-      expect(() => { new CorporationWaterCostsCalculator().calculateFor(10.5); }).toThrow();
-    });
     it('should calculate for flat rate of 1', () => {
       expect(new CorporationWaterCostsCalculator().calculateFor(10)).toEqual(10);
     });
@@ -30,9 +27,6 @@ describe('CorporationWaterCostsCalculator', () => {
 
 describe('BorewellWaterCostsCalculator', () => {
   describe('calculateFor', () => {
-    it('should throw error if water is not integer', () => {
-      expect(() => { new BorewellWaterCostsCalculator().calculateFor(10.5); }).toThrow();
-    });
     it('should calculate for flat rate of 1.5', () => {
       expect(new BorewellWaterCostsCalculator().calculateFor(10)).toEqual(15);
     });
@@ -41,9 +35,6 @@ describe('BorewellWaterCostsCalculator', () => {
 
 describe('BorewellWaterCostsCalculator', () => {
   describe('calculateFor', () => {
-    it('should throw error if water is not integer', () => {
-      expect(() => { new BorewellWaterCostsCalculator().calculateFor(10.5); }).toThrow();
-    });
     it('should calculate for flat rate of 1.5', () => {
       expect(new BorewellWaterCostsCalculator().calculateFor(10)).toEqual(15);
     });
@@ -52,9 +43,6 @@ describe('BorewellWaterCostsCalculator', () => {
 
 describe('TankerWaterCostsCalculator', () => {
   describe('calculateFor', () => {
-    it('should throw error if water is not integer', () => {
-      expect(() => { new TankerWaterCostsCalculator().calculateFor(10.5); }).toThrow();
-    });
     describe('slabs', () => {
       it('for 0 liters, cost is 0 ', () => {
         expect(new TankerWaterCostsCalculator().calculateFor(0)).toEqual(0);

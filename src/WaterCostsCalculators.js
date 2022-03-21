@@ -4,15 +4,8 @@ export class WaterCostsCalculator {
   }
 }
 
-const validateWaterUnits = (waterInLiters) => {
-  if (!Number.isInteger(waterInLiters)) {
-    throw new Error('Water is not integer');
-  }
-};
-
 export class CorporationWaterCostsCalculator extends WaterCostsCalculator {
   calculateFor(waterInLiters) {
-    validateWaterUnits(waterInLiters);
     const cost = 1;
     return cost * waterInLiters;
   }
@@ -20,7 +13,6 @@ export class CorporationWaterCostsCalculator extends WaterCostsCalculator {
 
 export class BorewellWaterCostsCalculator extends WaterCostsCalculator {
   calculateFor(waterInLiters) {
-    validateWaterUnits(waterInLiters);
     const cost = 1.5;
     return cost * waterInLiters;
 
@@ -57,7 +49,6 @@ export class TankerWaterCostsCalculator extends WaterCostsCalculator {
     new Slab({ minLiters: 3001, maxLiters: null, cost: 8 }),
   ];
   calculateFor(waterInLiters) {
-    validateWaterUnits(waterInLiters);
     let cost = 0;
     for (let slab of this.SLABS) {
       cost += slab.calculate(waterInLiters);
