@@ -10,9 +10,8 @@ export default class {
     const borewellWaterCostsCalculator = new BorewellWaterCostsCalculator();
     const corporationWaterCostsCalculator = new CorporationWaterCostsCalculator();
     const tankerWaterCostsCalculator = new TankerWaterCostsCalculator();
-      
-    return (borewellWaterCostsCalculator.calculateFor(borewellIntake) +
-          corporationWaterCostsCalculator.calculateFor(corporationIntake) +
-          tankerWaterCostsCalculator.calculateFor(tankerIntake)) * this.numberOfDays ;
+    return (borewellWaterCostsCalculator.calculateFor(borewellIntake * this.numberOfDays) +
+          corporationWaterCostsCalculator.calculateFor(corporationIntake * this.numberOfDays)+
+          tankerWaterCostsCalculator.calculateFor(tankerIntake * this.numberOfDays )) ;
   }
 }

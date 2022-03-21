@@ -23,19 +23,19 @@ describe('Water Bill Calculator', () => {
     
 
     it('should consider BorewellWaterCostsCalculator as part of the caluclation', () => {
-      expect(borewellWaterCostsCalculatorCalculateForMock).toHaveBeenCalledWith(4);
+      expect(borewellWaterCostsCalculatorCalculateForMock).toHaveBeenCalledWith(4 * NUMBER_OF_DAYS);
     });
 
     it('should consider CorporationWaterCostsCalculator as part of the caluclation', () => {
-      expect(corporationWaterCostsCalculatorCalculateForMock).toHaveBeenCalledWith(5);
+      expect(corporationWaterCostsCalculatorCalculateForMock).toHaveBeenCalledWith(5 * NUMBER_OF_DAYS);
     });
 
     it('should consider TankerWaterCostsCalculator as part of the caluclation', () => {
-      expect(tankerWaterCostsCalculatorCalculateForMock).toHaveBeenCalledWith(10);
+      expect(tankerWaterCostsCalculatorCalculateForMock).toHaveBeenCalledWith(10 * NUMBER_OF_DAYS);
     });
 
     it('should calculate the total cost for given number of days', () => {
-      expect(cost).toEqual((10 + 20 + 30) * NUMBER_OF_DAYS);
+      expect(cost).toEqual((10 + 20 + 30));
     });
 
   });
