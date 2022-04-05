@@ -1,6 +1,6 @@
 # Water Management
 
-The problem statement is based on https://www.geektrust.com/coding/detailed/water-management
+The problem statement is based on https://www.geektrust.com/challenge/water-management
 
 ## Setup
 
